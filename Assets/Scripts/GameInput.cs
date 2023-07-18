@@ -20,7 +20,8 @@ public class GameInput : MonoBehaviour
         } else {
             _instance = this;
         }
-        playerInputActions = new PlayerInputActions();  
+        playerInputActions = new PlayerInputActions(); // WASD, Mouse Cursor
+        // TODO: Add HMD, VR controller
         Cursor.visible = false;
     }
 

@@ -22,6 +22,7 @@ public class CinemachinePOVExtension : CinemachineExtension
                 if (startingRotation == null) {
                     startingRotation = transform.localRotation.eulerAngles;
                 }
+                // handles camera movements from mouse input
                 Vector2 deltaInput = gameInput.GetMouseDelta();
                 startingRotation.x += deltaInput.x * verticalSpeed * Time.deltaTime;
                 startingRotation.y += deltaInput.y * horizontalSpeed * Time.deltaTime;
@@ -29,7 +30,6 @@ public class CinemachinePOVExtension : CinemachineExtension
                 state.RawOrientation = Quaternion.Euler(-startingRotation.y, startingRotation.x, 0f);
                 
             }
-            
        }
     }
 }

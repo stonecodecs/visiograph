@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // from 2D movement script,
+        // TODO: Adapt to 3D floating space
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
