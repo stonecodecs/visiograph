@@ -33,11 +33,6 @@ public class PlayerController : MonoBehaviour
         move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        // if (move != Vector3.zero)
-        // {
-        //     transform.forward = move;
-        // }
-
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
