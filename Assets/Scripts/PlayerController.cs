@@ -7,14 +7,16 @@ public class PlayerController : MonoBehaviour
     private GameInput gameInput;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private float playerSpeed = 2.0f;
+    private float playerSpeed = 9f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
+    private Transform cameraTransform;
 
     private void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
         gameInput = GameInput.Instance;
+        cameraTransform = Camera.main.transform;
     }
 
     void Update()
@@ -25,14 +27,16 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector2 movement = gameInput.GetMovementVectorNormalized();
+        Vector2 movement = gameInput.GetMoveVectorNormalized();
         Vector3 move = new Vector3(movement.x, 0f, movement.y);
+        move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
+        move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
-        }
+        // if (move != Vector3.zero)
+        // {
+        //     transform.forward = move;
+        // }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
