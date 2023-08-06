@@ -40,4 +40,11 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMoveVectorNormalized() {
         return playerInputActions.Player.Move.ReadValue<Vector2>();
     }
+
+    public bool GetMouseLMB() {
+        float lmb = playerInputActions.Player.Select.ReadValue<float>(); // 0.0f or 1.0f
+        Debug.Log("lmb value: " + lmb.ToString());
+        if (lmb > 0.5f) { return true; }
+        else { return false; }
+    }
 }
